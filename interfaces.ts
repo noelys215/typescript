@@ -1,9 +1,9 @@
-interface Point {
+interface Points {
 	x: number;
 	y: number;
 }
 
-const pt: Point = { x: 13, y: 23 };
+const pt: Points = { x: 13, y: 23 };
 
 interface Person {
 	readonly id: number;
@@ -22,13 +22,13 @@ const william: Person = {
 	sayHi: () => 'hello',
 };
 
-interface Product {
+interface Products {
 	name: string;
 	price: number;
 	applyDiscount(discount: number): number;
 }
 
-const shoes: Product = {
+const shoes: Products = {
 	name: 'Doc Martens',
 	price: 169.99,
 	applyDiscount(discount: number) {
