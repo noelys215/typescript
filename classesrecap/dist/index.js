@@ -1,55 +1,93 @@
-'use strict';
-
+"use strict";
+// class Player {
+// 	public readonly first: string;
+// 	public readonly last: string;
+// 	private score: number = 0;
+// 	constructor(first: string, last: string) {
+// 		this.first = first;
+// 		this.last = last;
+// 	}
+// 	private secretMethod() {
+// 		console.log('Shh');
+// 	}
+// }
 class Player {
-	static desc = 'Player In Game';
-	#score = 0;
-	numLives = 9;
-	constructor(first, last) {
-		this.first = first;
-		this.last = last;
-	}
-	get score() {
-		return this.#score;
-	}
-	set score(newScore) {
-		if (newScore < 0) {
-			throw new Error('Score must be positive!');
-		}
-		this.#score = newScore;
-	}
-	updateScore(newScore) {
-		this.#score = newScore;
-	}
-	taunt() {
-		console.log('Git Gud');
-	}
-	loseLife() {
-		this.numLives -= 1;
-	}
-	get fullName() {
-		return `${this.first} ${this.last}`;
-	}
-	set fullName(newName) {
-		const [first, last] = newName.split(' ');
-		this.first = first;
-		this.last = last;
-	}
+    first;
+    last;
+    _score;
+    // private score: number = 0;
+    constructor(first, last, _score) {
+        this.first = first;
+        this.last = last;
+        this._score = _score;
+    }
+    secretMethod() {
+        console.log('Shh');
+    }
+    get fullName() {
+        return `${this.first} ${this.last}`;
+    }
+    getScore() {
+        return this._score;
+    }
 }
-
-class AdminPlayer extends Player {
-	constructor(first, last, newPowers) {
-		super(first, last);
-		this.powers = newPowers;
-	}
-	isAdmin = true;
+class SuperPlayer extends Player {
+    isAdmin = true;
+    maxScore() {
+        this._score = 9999;
+    }
 }
-
-const player1 = new Player('Polly', 'Poppins');
-const player2 = new Player('Charlie', 'Brown');
-
-player1.score = 23;
-const admin = new AdminPlayer('Chonky', 'Chonkerson', ['delete', 'restore']);
-console.log(admin);
-
-console.log(admin.fullName);
-console.log(admin.powers);
+const polly = new Player('Polly', 'Poppins', 99);
+console.log(polly.fullName);
+class Bike {
+    color;
+    constructor(color) {
+        this.color = color;
+    }
+}
+class Jacket {
+    brand;
+    color;
+    constructor(brand, color) {
+        this.brand = brand;
+        this.color = color;
+    }
+    print() {
+        console.log(`${this.color} ${this.brand} jacket`);
+    }
+}
+const jacket1 = new Jacket('Varvatos', 'black');
+const bike1 = new Bike('yellow');
+class Employee {
+    firstName;
+    lastName;
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    greet() {
+        console.log('Hi');
+    }
+}
+class FullTimeEmployee extends Employee {
+    salary;
+    constructor(firstName, lastName, salary) {
+        super(firstName, lastName);
+        this.salary = salary;
+    }
+    getPay() {
+        return this.salary;
+    }
+}
+class PartTimeEmployee extends Employee {
+    hourlyRate;
+    hoursWorked;
+    constructor(firstName, lastName, hourlyRate, hoursWorked) {
+        super(firstName, lastName);
+        this.hourlyRate = hourlyRate;
+        this.hoursWorked = hoursWorked;
+    }
+    getPay() {
+        return this.hourlyRate * this.hoursWorked;
+    }
+}
